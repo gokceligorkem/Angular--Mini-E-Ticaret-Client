@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Ürüne Resim Yükle</h2>
+<mat-dialog-content class="mat-typography">
+ <app-file-upload [options]="options"></app-file-upload>
+
+ <div class="row mt-2" >
+  <div class="col-sm-2 mt-2" *ngFor="let image of images">
+    <div class="card  p-1">
+      <input type="radio" name="img" (click)="showCase(image.id)" >
+       <img mat-card-image [src]="image.path"  >
+       <button  class="btn btn-warning" (click)="deleteImages(image.id)">Delete</button>
+    </div>
+  </div> 
+</div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

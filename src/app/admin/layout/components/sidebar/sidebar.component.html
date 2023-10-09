@@ -1,0 +1,13 @@
+
+  <div class="list-button-row">
+    <a mat-raised-button color="accent" routerLink="/admin">Dashboard</a>
+    <a mat-raised-button color="accent" routerLink="customers">Customers</a>
+    <mat-menu #productsMenu="matMenu">
+      <button mat-menu-item routerLink="products/listproducts">List Products</button>
+      <button mat-menu-item routerLink="products/addproducts">Add Product</button>
+    </mat-menu>
+    <button mat-raised-button color="accent" [matMenuTriggerFor]="productsMenu">Products</button>
+  
+    <a mat-raised-button color="accent" routerLink="orders">Orders</a>
+    <a mat-raised-button color="accent" routerLink="">Page</a>
+  </div>

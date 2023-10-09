@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="createproduct-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="createproduct-full-width">
+          <mat-label>Ürün Adı</mat-label>
+          <input matInput placeholder="Ürün Adı" #txtName >
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field >
+          <mat-label>Stok</mat-label>
+          <input matInput type="number" min="0" placeholder="0" #txtStock >
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+ 
+    <mat-form-field >
+      <mat-label>Fiyat</mat-label>
+      <input matInput type="number" min="0"  placeholder="Fiyat" value="0" #txtPrice>
+    </mat-form-field>
+    <!-- <div class="w-25">
+      <app-file-upload [options]="fileUploadOptions"></app-file-upload>
+    </div> -->
+    
+  <button mat-raised-button color="accent" (click)="create(txtName,txtPrice,txtStock)">Ekle</button>
+</div>

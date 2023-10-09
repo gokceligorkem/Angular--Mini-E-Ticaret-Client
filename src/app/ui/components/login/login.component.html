@@ -1,0 +1,38 @@
+<div class="card mt-1 mb-9">
+    <div class="header-card">
+    <h3>Merhaba</h3>
+    <small>Learning Eticaret'e giriş yap veya hesap oluştur, indirimleri kaçırma!
+    </small></div>
+    <div class="card-front">
+      
+        <div class="card-content">
+          
+           
+                <div class="form-group">                                         
+                    <label for="username">E-Posta</label>
+                     <input type="text"  class="form-control m-1" id="username"
+                        placeholder="Kullanıcı Adı veya Email" #txtUsernameOrEmail>                       
+                </div>
+                <div class="form-group">
+                    <label for="password" class="m-1">Şifre:</label>
+                    <input type="password" class="form-control "   id="password"
+                        placeholder="Parola" #txtPassword>             
+                </div>
+                <div class="googleLogin">
+                <asl-google-signin-button type='icon' size='large' ></asl-google-signin-button>
+                <img src="../../../../assets/icon/facebook.png" width="40" height="40" style="margin-left: 5px; cursor: pointer;" (click)="facebookLogin()">
+                </div>
+                <button type="submit" class="btn btn-outline-dark mt-2 submit" (click)="login(txtUsernameOrEmail.value,txtPassword.value)">Giriş yap</button>
+          
+            <div class="footer">
+                <small   class="form-text text-muted "></small><div></div>
+                <small  class="form-text text-muted " ></small><div></div>
+                <small  class="form-text text-muted " ></small><div></div>
+            </div>
+        </div>
+        <div class="image-container ">
+            <img src="assets/background/yazresmi2.jpg" alt="resim yok">
+        </div>
+
+    </div>
+</div>

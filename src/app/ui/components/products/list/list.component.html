@@ -1,0 +1,50 @@
+<section class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mb-4">
+                <p class="lead">BURAYA SLİDER VEYA REKLAM</p>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-12 col-md-6 col-lg-3 mb-3" *ngFor="let product of products">
+                <div class="card text-dark card-has-bg click-col">   
+                    <div class="card-img-overlay d-flex flex-column">
+                        <div class="card-body">
+                            <h3>{{product.name}}</h3>
+                            <img *ngIf="!product.FilesImage?.length" src="../../../../../assets/background/yazresmi2.jpg" alt="#" class="card-img-top" style="cursor: pointer;">
+                            <img *ngIf="product.FilesImage?.length" src="{{product.imagePath}}" alt="#" class="card-img-top" style="cursor: pointer;">
+                        </div>
+                        <small>Stok Sayısı:{{product.stock}}</small>
+                        <div class="card-footer">
+                            <h4>{{product.price | currency:"₺"}}</h4>
+                        </div>
+                        <button class="btn btn-primary">Sepete ekle </button>
+                    </div>
+                </div>
+            </div>
+           
+            
+        </div>
+    </div>
+    <div class="pagination">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link">{{currentPageNo}}/{{totalPageCount}}</a></li>
+
+          <li class="page-item">
+            <a class="page-link"[routerLink]="['/products',currentPageNo-1<=0?1:currentPageNo-1]">
+                Önceki
+                 </a>
+            </li>
+          <li class="page-item" *ngFor="let pageNo of pageList" routerLinkActive="active">
+            <a class="page-link" [routerLink]="['/products',pageNo]">{{pageNo}}</a></li>
+
+            <li class="page-item">
+                <a class="page-link" [routerLink]="['/products', currentPageNo + 1 >= totalPageCount ? totalPageCount : currentPageNo + 1]">
+                  Sonraki
+                </a>
+              </li>
+        </ul>
+      </nav>
+    </div>
+</section>

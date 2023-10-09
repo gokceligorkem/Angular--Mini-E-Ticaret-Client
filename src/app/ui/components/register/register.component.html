@@ -1,0 +1,52 @@
+<div class="card mt-1 mb-9">
+    <div class="card-front">
+        <div class="card-content">
+            <h3>Kayıt Olma Sayfası</h3>
+            <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 p-1">
+                            <label for="nameSurname">Ad Soyad</label>
+                            <input type="text" formControlName="nameSurname" class="form-control m-1" id="nameSurname"
+                                placeholder="Ad ve Soyad" [ngClass]="{'is-invalid':submitted && component.nameSurname.errors}">
+                        </div>
+                        <div class="col-md-6 p-1">
+                            <label for="username">Kullanıcı Adı</label>
+                            <input type="text" formControlName="username" class="form-control m-1" id="username"
+                                placeholder="Kullanıcı Adı" [ngClass]="{'is-invalid':submitted && component.username.errors}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="m-1">Email address:</label>
+                    <input type="email" class="form-control " formControlName="email" id="email" placeholder="Email" [ngClass]="{'is-invalid':submitted && component.email.errors}">
+
+
+                    <label for="password" class="m-1">Şifre:</label>
+                    <input type="password" class="form-control " formControlName="password"  id="password"
+                        placeholder="Parola" [ngClass]="{'is-invalid':submitted && component.password.errors}">
+
+                    <label for="passwordConfirm" class="m-1">Şifre Tekrar:</label>
+                    <input type="password" class="form-control " formControlName="passwordConfirm" id="passwordConfirm"
+                        placeholder="Parola Tekrar" [ngClass]="{'is-invalid':submitted && component.passwordConfirm.errors}">
+                </div>
+
+                <button type="submit" class="btn btn-outline-dark mt-2 submit">Kayıt ol</button>
+            </form>
+            <div class="footer">
+                <small  class="form-text text-muted " *ngIf="submitted && component.nameSurname.errors?.required">Lütfen ad ve soyadı boş geçmeyiniz.</small><div></div>
+                <small   class="form-text text-muted " *ngIf="submitted && (component.nameSurname.errors?.maxlength) || (component.nameSurname.errors?.minlength
+                ) ">50 ile 3 karakter arasında giriniz.</small><div></div>
+                <small   class="form-text text-muted " *ngIf="submitted && component.username.errors?.required">Lütfen Kullanıcı adını boş geçmeyiniz.</small><div></div>
+                <small  class="form-text text-muted " *ngIf="submitted && component.email.errors?.required">Lütfen email boş geçmeyiniz.</small><div></div>
+                <small  class="form-text text-muted " *ngIf="submitted && component.email.errors?.email">Lütfen email formatını doğru giriniz.</small><div></div>
+                <small  class="form-text text-muted " *ngIf="submitted && frm.hasError('notSame')">Şifreler eşleşmedi</small><div></div>
+
+            </div>
+        </div>
+        <div class="image-container ">
+            <img src="assets/background/yazresmi2.jpg" alt="Resim Açıklaması">
+        </div>
+
+    </div>
+</div>

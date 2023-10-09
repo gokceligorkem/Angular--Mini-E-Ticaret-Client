@@ -1,0 +1,60 @@
+    /* Kartı sayfanın ortasına hizala */
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        border: none; 
+    }
+
+    /* Kartın ön yüzü */
+    .card-front {
+        width: 400px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        text-align: center;
+        animation: colorChange 5s linear infinite alternate; /* Renk değişimi animasyonu */
+
+    }
+
+
+    /* Renk değişimi animasyonu */
+    @keyframes colorChange {
+        0% {
+            background-color: #3498db;
+        }
+        100% {
+            background-color: #6e3c6f;
+        }
+    }
+
+    /* Kart içeriği */
+    .card-content {
+        padding: 20px;
+    }
+
+    /* Inputları ortala */
+    .form-group {
+        text-align: center;
+    }
+
+    /* Submit butonunu yukarı kaydır */
+    .submit {
+        margin-top: 15px;
+    }
+
+    .image-container {
+        width: 100%;
+        height: auto;
+        
+    }
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }

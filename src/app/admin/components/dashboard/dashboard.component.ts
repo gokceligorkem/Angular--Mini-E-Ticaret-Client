@@ -11,12 +11,21 @@ import { SignalrService } from 'src/app/services/common/signalr.service';
 })
 export class DashboardComponent implements OnInit {
 constructor(private alertify:AlertifyService,private signalR:SignalrService){
-signalR.start(HubUrls.ProductHub)
+
 }
   ngOnInit(): void {
-    // this.signalR.on(ReceiveFunctions.ProductAddedMessageReceiveFunction,message=>{
-    //   alert(message);
-    // });
+    this.signalR.on(HubUrls.ProductHub,ReceiveFunctions.ProductAddedMessageReceiveFunction,message=>{
+     this.alertify.message(message,{
+      messageType:MessageType.Notify,
+      position:Position.TopRight
+     })
+    });
+    this.signalR.on(HubUrls.OrderHub,ReceiveFunctions.OrderAddedMessageReceiveFunction,message=>{
+      this.alertify.message(message,{
+        messageType:MessageType.Notify,
+        position:Position.TopRight
+       })
+    });
   }
 m(){
   this.alertify.message("Merhaba",{

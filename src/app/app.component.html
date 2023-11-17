@@ -25,10 +25,7 @@
               <li class="nav-item">
                 <a class="nav-link btn btn-warning" routerLink="products">Ürünler</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link btn btn-warning" routerLink="baskets">Sepet</a>
-              </li>
-
+          
               <li class="nav-item dropdown" *ngIf="!authService.isAuthenticate">
                 <a
                   class="nav-link btn btn-secondary dropdown-toggle"
@@ -56,10 +53,16 @@
                 <a class="nav-link btn btn-warning" (click)="signOut()" *ngIf="authService.isAuthenticate">Çıkış Yap</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <!-- <form class="d-flex" role="search">
               <input class="form-control" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-info text-center px-2 mx-1" type="submit">Ara</button>
-            </form>
+            </form> -->
+            <div class="nav-item ">
+              <button (click)="loadComponent()" class="nav-link" data-bs-toggle="modal" data-bs-target="#basketModal" type="submit">
+                <fa-icon [icon]="faShoppingCart" class="shopcart-icon"></fa-icon>
+                Sepetim
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -84,4 +87,12 @@
   <ngx-spinner size="medium" name="s3" type="square-jelly-box">
     <p>Loading...</p>
   </ngx-spinner>
+</div>
+<!-- <app-baskets></app-baskets> -->
+<div class="modal fade" id="basketModal" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+<ng-template appDynamicLoadComponent >
+
+</ng-template>
+</div>
 </div>

@@ -12,6 +12,12 @@ const routes: Routes = [
     {path:"products",loadChildren:()=>import("./admin/components/products/products.module").then(module=>module.ProductsModule),canActivate:[AuthGuard]},
     {path:"orders",loadChildren:()=>import("./admin/components/order/order.module").then
     (module=>module.OrderModule),canActivate:[AuthGuard]},
+    {path:"authorize-menu",loadChildren:()=>import("../app/admin/components/authorize-menu/authorize-menu.module").then
+    (module=>module.AuthorizeMenuModule),canActivate:[AuthGuard]},
+    {path:"roles",loadChildren:()=>import("../app/admin/components/rolepage/rolepage.module").then
+    (module=>module.RolepageModule),canActivate:[AuthGuard]},
+    {path:"users",loadChildren:()=>import("../app/admin/components/users/users.module").then
+    (module=>module.UsersModule),canActivate:[AuthGuard]}
   ],canActivate:[AuthGuard]
 },
   {path:"",component:HomeComponent},
@@ -25,6 +31,11 @@ const routes: Routes = [
   (module=>module.RegisterModule)},
   {path:"login",loadChildren:()=>import("./ui/components/login/login.module").then
   (module=>module.LoginModule)},
+  {path:"password-reset",loadChildren:()=>import("../app/ui/components/password-reset/password-reset.module").then
+  (module=>module.PasswordResetModule)},
+  {path:"update-password/:userId/:resetToken",loadChildren:()=>import("../app/ui/components/update-password/update-password.module").then
+  (module=>module.UpdatePasswordModule)},
+
 
 ];
 

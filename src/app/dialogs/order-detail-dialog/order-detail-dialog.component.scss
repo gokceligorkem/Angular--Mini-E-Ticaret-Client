@@ -1,0 +1,29 @@
+.demo-table {
+    width: 100%;
+  }
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  } 
+  .siparis-kodu {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #454545;
+    background-color:#999999;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 2px; 
+}

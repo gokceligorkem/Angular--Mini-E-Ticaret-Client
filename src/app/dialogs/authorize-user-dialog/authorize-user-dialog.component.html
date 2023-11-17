@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>
+    {{ data.name }} / {{data.menuName}} Endpointine Role Atama
+    <span matBadge="{{  roleList.selectedOptions.selected.length }}/{{ roles.totalCount }}" matBadgeOverlap="false"
+      style="margin-left: 10px;"></span>
+  </h1>
+  
+  <div mat-dialog-content>
+    <p>Aşağıdaki rolleri atabilirsiniz.</p>
+  </div>
+  <div>
+    <mat-selection-list #roleList>
+      <mat-list-option *ngFor="let role of listRoles" [value]="role" selected="{{role.selected}}"> 
+        {{ role.name}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">İptal</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="assignRole(roleList)">Yetkilendir</button>
+  </div>
+  

@@ -1,3 +1,5 @@
 export enum HubUrls{
-    ProductHub="https://localhost:7034/products-hub"
+    ProductHub="products-hub",
+    OrderHub="order-hub",
+
 }

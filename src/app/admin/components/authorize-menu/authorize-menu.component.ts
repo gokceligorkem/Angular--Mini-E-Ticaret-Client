@@ -1,0 +1,88 @@
+import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseComponent } from 'src/app/base/base.component';
+import {FlatTreeControl} from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { ApplicationService } from 'src/app/services/common/models/application.service';
+import { AuthorizeMenu } from 'src/app/contracts/authorizemenu';
+import { DialogService } from 'src/app/services/common/dialog.service';
+import { AuthorizeMenuDialogComponent } from 'src/app/dialogs/authorize-menu-dialog/authorize-menu-dialog.component';
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+interface ITreeMenu {
+  name?:string
+  actions?:  ITreeMenu[]
+  code?:string,
+  menuName?:string
+}
+@Component({
+  selector: 'app-authorize-menu',
+  templateUrl: './authorize-menu.component.html',
+  styleUrls: ['./authorize-menu.component.scss']
+})
+
+export class AuthorizeMenuComponent extends BaseComponent implements OnInit {
+constructor(spinner:NgxSpinnerService,private applicationService:ApplicationService,private dialogService:DialogService){
+  super(spinner);
+
+}
+  async ngOnInit() {
+    this.dataSource.data =(await this.applicationService.getAuthorizeDefinitionEndpoint()).map(m=>{
+      const treeMenu:ITreeMenu={
+        name:m.name,
+        actions:m.actions.map(a=>{
+          const _treemenu:ITreeMenu={
+            name:a.definition,
+            code:a.code,
+            menuName:m.name
+          }
+          return _treemenu
+        })
+      }
+      return treeMenu
+    });
+  }
+
+treeControl = new FlatTreeControl<ExampleFlatNode>(
+  node => node.level,
+  node => node.expandable,
+);
+
+treeFlattener = new MatTreeFlattener(
+  (menu: ITreeMenu, level: number) => {
+    return {
+      expandable: menu.actions?.length > 0,
+        name: menu.name,
+        level: level,
+        code: menu.code,
+        menuName: menu.menuName
+    };
+  },
+  node => node.level,
+  node => node.expandable,
+  node => node.actions
+  
+);
+
+dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+assignRole(code: string, name: string, menuName: string){
+this.dialogService.openDialog({
+  componenType:AuthorizeMenuDialogComponent,
+  data:{code: code, name: name, menuName: menuName },
+  options:{
+    width:"750px"
+  },
+  afterClosed:()=>{}
+})
+}
+}
+

@@ -5,6 +5,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { BaseComponent, spinnerType } from 'src/app/base/base.component';
 import { List_Product } from 'src/app/contracts/list_product';
+import { QrcodeDialogComponent } from 'src/app/dialogs/qrcode-dialog/qrcode-dialog.component';
+import { QrcodeReadingDialogComponent } from 'src/app/dialogs/qrcode-reading-dialog/qrcode-reading-dialog.component';
 import { SelectProductImageDialogComponent } from 'src/app/dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { DialogService } from 'src/app/services/common/dialog.service';
@@ -27,7 +29,7 @@ export class ProductsComponent extends BaseComponent implements OnInit  {
     super(snipper);
   }
   
-  displayedColumns: string[] = ['name', 'stock', 'price','createdTime','updatedTime','update','image','delete',];
+  displayedColumns: string[] = ['name', 'stock', 'price','createdTime','updatedTime','update','image','delete','qRcode'];
   dataSource :MatTableDataSource<List_Product>=null
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -65,12 +67,28 @@ async pageChanged(){
     await this.dialogSerivce.openDialog({
       componenType:SelectProductImageDialogComponent,
       data:id,
-   
     })
   }
 
-
-
+  showQRCode(productId:string){
+   this.dialogSerivce.openDialog({
+    componenType:QrcodeDialogComponent,
+    data:productId,
+    afterClosed:()=>{},
+   
+  })
+  }
+  showDialogQrCode(){
+    this.dialogSerivce.openDialog({
+     componenType:QrcodeReadingDialogComponent,
+     data:null,
+     afterClosed:()=>{},
+    options:{
+      heigth:"450px",
+      width:"450px"
+    }
+   })
+   }
 
 
 

@@ -54,14 +54,20 @@
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef >
-        
+   
     </th>
     <td  mat-cell  *matCellDef="let element "  class="img-cursor"
     [id]="element.id" appDelete (refreshlist)="getProducts()" controller="products">
 
     </td> 
   </ng-container>
-  
+  <ng-container matColumnDef="qRcode">
+    <th mat-header-cell *matHeaderCellDef >
+      qRcode
+    </th>
+    <td mat-cell *matCellDef="let element" ><img (click)="showQRCode(element.id)" class="img-cursor" src="../../../../assets/icon/qrCode.png" width="30px"></td>
+
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -73,4 +79,7 @@
                showFirstLastButtons
                aria-label="Select page of periodic elements">
 </mat-paginator>
+</div>
+<div class=" d-flex justify-content-end mt-1">
+  <button class="btn btn-primary " (click)="showDialogQrCode()">QRCode reading</button>
 </div>

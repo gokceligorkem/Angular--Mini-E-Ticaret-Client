@@ -12,18 +12,28 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './ui/components/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule,GoogleSigninButtonModule, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-component.directive';
+import { BasketItemRemoveDialogComponent } from './dialogs/basket-item-remove-dialog/basket-item-remove-dialog.component';
+import { OrderDetailDialogComponent } from './dialogs/order-detail-dialog/order-detail-dialog.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DynamicLoadComponentDirective,
+  
+    
+   
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FontAwesomeModule,
     AdminModule,
     UiModule,
     BrowserAnimationsModule,
@@ -40,7 +50,9 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
     
      
   ],
-  providers: [{provide:"baseUrl",useValue:"https://localhost:7034/api",multi:true},
+  providers: [
+    {provide:"baseUrl",useValue:"https://localhost:7034/api",multi:true},
+    {provide:"baseSignalRUrl",useValue:"https://localhost:7034/",multi:true},
   {
     provide: "SocialAuthServiceConfig",
     useValue: {
